@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Validation</title>
+</head>
+<body>
+    <h1>Ticket Validation Result</h1>
+    <div id="validationResult"></div>
+
+    <script>
+        // Λήψη του αποτελέσματος εγκυρότητας από την παράμετρο "valid" στη διεύθυνση URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const validationResult = urlParams.get('valid');
+
+        // Εμφάνιση ανάλογου μηνύματος εγκυρότητας
+        const resultElement = document.getElementById('validationResult');
+        if (validationResult === 'true') {
+            resultElement.innerText = 'Το εισιτήριο είναι έγκυρο.';
+            resultElement.style.color = 'green';
+        } else {
+            resultElement.innerText = 'Το εισιτήριο δεν είναι έγκυρο.';
+            resultElement.style.color = 'red';
+        }
+    </script>
+</body>
+</html>

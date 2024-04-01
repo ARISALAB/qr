@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .ticket {
+            width: 400px;
+            margin: 0 auto;
+            border: 2px solid #333;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket">
+        <h2>Event Ticket</h2>
+        <p>Όνομα Πελάτη: <span id="clientName"></span></p>
+        <p>Αριθμός Εισιτηρίου: <span id="ticketNumber"></span></p>
+        <canvas id="qrCode"></canvas>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script>
+        // Λίστα με έγκυρους αριθμούς εισιτηρίων
+        const validTickets = ["123456", "789012", "345678"];
+
+        // Συνάρτηση για έλεγχο εγκυρότητας του εισιτηρίου
+        function validateTicket(ticketNumber) {
+            return validTickets.includes(ticketNumber);
+        }
+
+        // Λήψη του αριθμού του εισιτηρίου από το QR code
+        const ticketNumber = "123456"; // Υποθέτουμε ότι έχουμε τον αριθμό του εισιτηρίου
+
+        // Υποθέτουμε ότι έχουμε το όνομα του πελάτη
+        const clientName = "Όνομα Πελάτη";
+
+        // Εμφάνιση των δεδομένων του πελάτη στο εισιτήριο
+        document.getElementById("clientName").innerText = clientName;
+        document.getElementById("ticketNumber").innerText = ticketNumber;
+
+        // Δημιουργία του QR code
+        const qrCanvas = document.getElementById("qrCode");
+        const qr = new QRious({
+            element: qrCanvas,
+            value: `https://example.com/validation.html?valid=${validateTicket(ticketNumber)}`,
+            size: 200
+        });
+    </script>
+</body>
+</html>
